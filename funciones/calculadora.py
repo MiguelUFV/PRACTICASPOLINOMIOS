@@ -50,3 +50,8 @@ def imprime_polinomio(polinomio):
             else:
                 terminos.append(f"{coef}x^{exp}")
     return ' + '.join(terminos).replace('+ -', '- ')
+def evalua(polinomio, x):
+    resultado = 0
+    for exp, coef in polinomio.items():
+        resultado += coef * (x ** exp)
+    return resultado
