@@ -17,5 +17,10 @@ def parse_polinomio(polinomio_str):
         polinomio[exp] = polinomio.get(exp, 0) + coef
     return polinomio
 
+def suma(p1, p2):
+    resultado = p1.copy()
+    for exp, coef in p2.items():
+        resultado[exp] = resultado.get(exp, 0) + coef
+    return resultado
 
 
