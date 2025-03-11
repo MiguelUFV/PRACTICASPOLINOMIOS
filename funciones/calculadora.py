@@ -37,3 +37,16 @@ def multiplica(p1, p2):
             coef = coef1 * coef2
             resultado[exp] = resultado.get(exp, 0) + coef
     return resultado
+
+def imprime_polinomio(polinomio):
+    terminos = []
+    for exp in sorted(polinomio.keys(), reverse=True):
+        coef = polinomio[exp]
+        if coef:
+            if exp == 0:
+                terminos.append(f"{coef}")
+            elif exp == 1:
+                terminos.append(f"{coef}x")
+            else:
+                terminos.append(f"{coef}x^{exp}")
+    return ' + '.join(terminos).replace('+ -', '- ')
