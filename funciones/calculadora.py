@@ -23,4 +23,9 @@ def suma(p1, p2):
         resultado[exp] = resultado.get(exp, 0) + coef
     return resultado
 
+def resta(p1, p2):
+    resultado = p1.copy()
+    for exp, coef in p2.items():
+        resultado[exp] = resultado.get(exp, 0) - coef
+    return resultado
 
