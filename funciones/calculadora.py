@@ -29,3 +29,11 @@ def resta(p1, p2):
         resultado[exp] = resultado.get(exp, 0) - coef
     return resultado
 
+def multiplica(p1, p2):
+    resultado = {}
+    for exp1, coef1 in p1.items():
+        for exp2, coef2 in p2.items():
+            exp = exp1 + exp2
+            coef = coef1 * coef2
+            resultado[exp] = resultado.get(exp, 0) + coef
+    return resultado
