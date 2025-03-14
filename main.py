@@ -13,4 +13,3 @@ def main():
 
         if opcion == '5':
             break
->>>>>>> refs/remotes/origin/main
