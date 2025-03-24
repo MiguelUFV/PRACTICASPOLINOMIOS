@@ -1,4 +1,3 @@
-
 def parse_polinomio(polinomio_str):
     terminos = polinomio_str.replace('-', '+-').split('+')
     polinomio = {}
@@ -37,6 +36,35 @@ def multiplica(p1, p2):
             coef = coef1 * coef2
             resultado[exp] = resultado.get(exp, 0) + coef
     return resultado
+
+
+def divide(p1, p2):
+    if not p2 or all(coef == 0 for coef in p2.values()):
+        raise ValueError("No se puede dividir por un polinomio nulo o cero.")
+
+    if max(p1.keys()) < max(p2.keys()):
+        # Si el grado de p1 es menor que p2, la división no se puede realizar
+        return {}, p1
+
+    cociente = {}
+    residuo = p1.copy()
+
+    while residuo and max(residuo.keys()) >= max(p2.keys()):
+        exp_dif = max(residuo.keys()) - max(p2.keys())
+        coef_dif = residuo[max(residuo.keys())] / p2[max(p2.keys())]
+        cociente[exp_dif] = coef_dif
+
+        # Multiplicamos el divisor por el término del cociente calculado
+        p2_aux = {exp + exp_dif: coef * coef_dif for exp, coef in p2.items()}
+
+        # Restamos para actualizar el residuo
+        residuo = resta(residuo, p2_aux)
+
+        # Eliminamos términos con coeficiente cero
+        residuo = {exp: coef for exp, coef in residuo.items() if coef != 0}
+
+    return cociente, residuo
+
 
 def imprime_polinomio(polinomio):
     terminos = []
